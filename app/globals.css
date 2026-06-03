@@ -1,8 +1,14 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0a0a0a;
+  --foreground: #ededed;
+  --accent: #6366f1;
+  --accent-dim: #4338ca;
+  --surface: #111111;
+  --surface-2: #1a1a1a;
+  --border: #2a2a2a;
+  --muted: #666666;
 }
 
 @theme inline {
@@ -12,15 +18,88 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+/* Safe area for iPhone notch */
+.safe-top { padding-top: env(safe-area-inset-top); }
+.safe-bottom { padding-bottom: env(safe-area-inset-bottom); }
+
+/* Prose for AI responses */
+.prose-livrr p { margin-bottom: 0.75rem; line-height: 1.6; }
+.prose-livrr p:last-child { margin-bottom: 0; }
+.prose-livrr strong { font-weight: 600; color: #fff; }
+.prose-livrr em { font-style: italic; color: #ccc; }
+.prose-livrr ul { margin: 0.5rem 0; padding-left: 1.5rem; }
+.prose-livrr ul li { margin-bottom: 0.25rem; }
+.prose-livrr ol { margin: 0.5rem 0; padding-left: 1.5rem; }
+.prose-livrr ol li { margin-bottom: 0.25rem; }
+.prose-livrr code {
+  background: #1e1e2e;
+  border: 1px solid #2a2a3e;
+  border-radius: 4px;
+  padding: 0.1em 0.4em;
+  font-size: 0.85em;
+  font-family: var(--font-geist-mono);
+}
+.prose-livrr pre {
+  background: #1e1e2e;
+  border: 1px solid #2a2a3e;
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 0.75rem 0;
+  overflow-x: auto;
+}
+.prose-livrr pre code {
+  background: none;
+  border: none;
+  padding: 0;
+}
+.prose-livrr h1, .prose-livrr h2, .prose-livrr h3 {
+  font-weight: 600;
+  margin: 1rem 0 0.5rem;
+  color: #fff;
+}
+.prose-livrr blockquote {
+  border-left: 2px solid var(--accent);
+  padding-left: 1rem;
+  color: var(--muted);
+  margin: 0.75rem 0;
+}
+
+/* Pulse animation for thinking indicator */
+@keyframes pulse-dot {
+  0%, 80%, 100% { transform: scale(0); opacity: 0.3; }
+  40% { transform: scale(1); opacity: 1; }
+}
+.thinking-dot {
+  animation: pulse-dot 1.4s infinite ease-in-out both;
+}
+.thinking-dot:nth-child(1) { animation-delay: -0.32s; }
+.thinking-dot:nth-child(2) { animation-delay: -0.16s; }
+.thinking-dot:nth-child(3) { animation-delay: 0s; }
+
+/* Slide-in for notifications */
+@keyframes slide-in-right {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+.slide-in-right { animation: slide-in-right 0.3s ease-out; }

@@ -1,0 +1,3 @@
+Replace icon-192.png and icon-512.png with proper PNG icons.
+SVG source is at public/icon.svg
+Use https://convertio.co or Figma to export.
