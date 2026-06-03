@@ -7,13 +7,18 @@ Fill in `.env.local`:
 ```
 LIVRR_MONGODB_URI=         # Your MongoDB Atlas connection string
 ANTHROPIC_API_KEY=         # From console.anthropic.com
-NEXT_PUBLIC_VAPID_PUBLIC_KEY=BKvlc37xH3En8rTneDMCgijWXUYfYgZSWq-MWq55VP8UvuJDj_GrHzbzRsIcGQnvW836tDE4XUAmOqbVOlGapaM
-VAPID_PRIVATE_KEY=CcMjWHx-Tv-gOTGJiQ5m1sn8PTB0E5FM-wuxJeNNtKw
+NEXT_PUBLIC_VAPID_PUBLIC_KEY=  # Run: node scripts/generate-vapid.js
+VAPID_PRIVATE_KEY=             # Run: node scripts/generate-vapid.js
 VAPID_EMAIL=mailto:your@email.com
 NEXT_PUBLIC_APP_URL=https://your-vercel-url.vercel.app
 ```
 
-The VAPID keys are already generated and saved above. Never regenerate them — changing VAPID keys invalidates all existing push subscriptions.
+Generate your own VAPID keys by running:
+```bash
+node scripts/generate-vapid.js
+```
+
+Never commit VAPID keys to the repo — add them only as Vercel environment variables.
 
 ## 2. MongoDB Atlas
 
