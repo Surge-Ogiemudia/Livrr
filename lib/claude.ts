@@ -2,7 +2,7 @@ import Anthropic from '@anthropic-ai/sdk';
 import { UserMemory, Message } from './types';
 
 const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
-const MODEL = 'claude-sonnet-4-20250514';
+const MODEL = 'claude-sonnet-4-6';
 
 function buildSystemPrompt(memory: UserMemory): string {
   const name = memory.profile.name;
